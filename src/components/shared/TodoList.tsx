@@ -9,6 +9,7 @@ import {
   query,
   updateDoc,
 } from "firebase/firestore";
+import { AnimatePresence } from "framer-motion";
 import { FC, useCallback, useEffect } from "react";
 import TodoItem from "./TodoItem";
 
@@ -71,14 +72,16 @@ const TodoList: FC = () => {
     <div>
       {todos.length ? (
         <div className="space-y-2">
-          {todos.map((todo: Todo) => (
-            <TodoItem
-              key={todo.id}
-              todo={todo}
-              handleDelete={handleDelete}
-              handleToggle={handleToggle}
-            />
-          ))}
+          <AnimatePresence>
+            {todos.map((todo: Todo) => (
+              <TodoItem
+                key={todo.id}
+                todo={todo}
+                handleDelete={handleDelete}
+                handleToggle={handleToggle}
+              />
+            ))}
+          </AnimatePresence>
         </div>
       ) : (
         <div className="bg-white/50 backdrop-blur backdrop:blur-sm p-3 rounded flex w-full items-start justify-start gap-2 border border-slate-200 relative">
