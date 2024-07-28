@@ -21,12 +21,15 @@ export const AppContext = createContext<ContextProps>({
   setTodos: () => {},
   actionLogin: () => {},
   actionLogout: () => {},
+  filterStatus: "all",
+  setFilterStatus: () => {},
 });
 
 export const AppState = ({ children }: { children: ReactNode }) => {
   const [authLoading, setAuthLoading] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [filterStatus, setFilterStatus] = useState<string>("all");
 
   const actionLogin = async () => {
     try {
@@ -99,6 +102,8 @@ export const AppState = ({ children }: { children: ReactNode }) => {
         actionLogin,
         actionLogout,
         authLoading,
+        filterStatus,
+        setFilterStatus,
       }}
     >
       {children}

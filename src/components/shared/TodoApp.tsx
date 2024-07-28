@@ -5,7 +5,7 @@ import TodoList from "./TodoList";
 
 const TodoApp: FC = () => {
   return (
-    <div className="min-h-dvh">
+    <div className="min-h-dvh relative z-20">
       <Header />
       <div className="max-w-lg mx-auto px-4">
         <TodoForm />

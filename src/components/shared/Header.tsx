@@ -15,7 +15,7 @@ interface HeaderProps {}
 const Header: FC<HeaderProps> = ({}) => {
   const { user, actionLogout } = useApp();
   return (
-    <header className="border-b py-3">
+    <header className="bg-white/5 backdrop-blur sticky top-0 left-0 w-full border-b border-b-slate-200 shadow-sm py-2 z-50">
       <div className="max-w-lg mx-auto px-4 flex items-center justify-between">
         <div className="text-xl font-extrabold">
           Todo <span className="text-blue-600">Flow</span>

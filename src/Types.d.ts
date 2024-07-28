@@ -19,4 +19,6 @@ interface ContextProps {
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
   actionLogin: () => void;
   actionLogout: () => void;
+  filterStatus: string;
+  setFilterStatus: (status: string) => void;
 }

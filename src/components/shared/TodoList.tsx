@@ -14,7 +14,15 @@ import { FC, useCallback, useEffect } from "react";
 import TodoItem from "./TodoItem";
 
 const TodoList: FC = () => {
-  const { user, todos, setTodos } = useApp();
+  const { user, todos, setTodos, filterStatus } = useApp();
+  const filteredTodos = todos.filter((todo) => {
+    if (filterStatus === "completed") {
+      return todo.completed;
+    } else if (filterStatus === "pending") {
+      return !todo.completed;
+    }
+    return true;
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -70,10 +78,10 @@ const TodoList: FC = () => {
 
   return (
     <div>
-      {todos.length ? (
+      {filteredTodos.length ? (
         <div className="space-y-2">
           <AnimatePresence>
-            {todos.map((todo: Todo) => (
+            {filteredTodos.map((todo: Todo) => (
               <TodoItem
                 key={todo.id}
                 todo={todo}

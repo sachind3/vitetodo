@@ -7,6 +7,7 @@ import { Toaster } from "sonner";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <AppState>
     <App />
+    <div className="gradient"></div>
     <Toaster position="top-center" richColors />
   </AppState>
 );

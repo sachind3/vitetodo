@@ -1,6 +1,16 @@
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { useApp } from "@/context";
 import { firestore } from "@/firebase/config";
 import { addDoc, collection } from "firebase/firestore";
+import { ListFilter, X } from "lucide-react";
 import { FC, FormEvent, useState } from "react";
 import { toast } from "sonner";
 import { Button } from "../ui/button";
@@ -8,7 +18,7 @@ import { Input } from "../ui/input";
 
 const TodoForm: FC = () => {
   const [text, setText] = useState<string>("");
-  const { user, setTodos } = useApp();
+  const { user, setTodos, filterStatus, setFilterStatus } = useApp();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -35,6 +45,7 @@ const TodoForm: FC = () => {
         completed: false,
         createdAt,
       });
+      setFilterStatus("all");
 
       setTodos((todos: Todo[]) => [
         {
@@ -63,11 +74,40 @@ const TodoForm: FC = () => {
     <form onSubmit={handleSubmit} className="flex gap-2 w-full my-4">
       <Input
         placeholder="Enter a task"
-        className="grow"
+        className="backdrop:blur-sm bg-white/50 backdrop-blur grow"
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
       <Button type="submit">Add</Button>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline" className="!px-2 relative">
+            {(filterStatus === "completed" || filterStatus === "pending") && (
+              <div className="rounded-full bg-red-500 absolute -top-1 -right-1">
+                <X size={10} className="text-white" />
+              </div>
+            )}
+
+            <ListFilter />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuLabel>Filter by</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuRadioGroup
+            value={filterStatus}
+            onValueChange={setFilterStatus}
+          >
+            <DropdownMenuRadioItem value="all">All</DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value="completed">
+              Completed
+            </DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value="pending">
+              Pending
+            </DropdownMenuRadioItem>
+          </DropdownMenuRadioGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </form>
   );
 };
