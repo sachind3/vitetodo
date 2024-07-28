@@ -11,9 +11,7 @@ import { LogOut } from "lucide-react";
 import { FC } from "react";
 import { ModeToggle } from "../mode-toggle";
 
-interface HeaderProps {}
-
-const Header: FC<HeaderProps> = ({}) => {
+const Header: FC = ({}) => {
   const { user, actionLogout } = useApp();
   return (
     <header className="bg-white/50 dark:bg-black/50 backdrop-blur sticky top-0 left-0 w-full border-b border-b-slate-200 dark:border-b-slate-800 shadow-sm py-2 z-50">
@@ -27,6 +25,8 @@ const Header: FC<HeaderProps> = ({}) => {
               <Avatar>
                 <AvatarImage
                   src={user?.photoURL || "https://github.com/shadcn.png"}
+                  alt={user?.displayName || ""}
+                  referrerPolicy="no-referrer"
                 />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
