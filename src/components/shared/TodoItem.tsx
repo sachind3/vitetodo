@@ -27,7 +27,9 @@ const TodoItem: FC<TodoItemProps> = ({ todo, handleDelete, handleToggle }) => {
       </div>
       <div className="grow">
         <div className={todo.completed ? "line-through" : ""}>{todo.text}</div>
-        <div className="text-xs">{new Date(todo.createdAt).toDateString()}</div>
+        <div className="text-xs text-slate-500">
+          {new Date(todo.createdAt).toDateString()}
+        </div>
       </div>
       <div>
         <Button
