@@ -1,14 +1,14 @@
 import { FC } from "react";
-import Header from "./Header";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 
 const TodoApp: FC = () => {
   return (
-    <div className="min-h-dvh relative z-20">
-      <Header />
-      <div className="max-w-lg mx-auto px-4">
+    <div className="relative z-20 grow pb-4">
+      <div className="max-w-lg mx-auto p-4 bg-white/50 dark:bg-black/50 rounded mb-2">
         <TodoForm />
+      </div>
+      <div className="max-w-lg mx-auto px-4">
         <TodoList />
       </div>
     </div>

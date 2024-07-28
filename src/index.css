@@ -61,7 +61,6 @@
   }
 }
 
-
 @layer base {
   * {
     @apply border-border;
@@ -70,6 +69,12 @@
     @apply bg-background text-foreground;
   }
 }
+@layer utilities {
+  #root {
+    @apply min-h-dvh flex flex-col justify-between
+  }
+}
+
 @keyframes rotate {
   0% {
     transform: rotate(0deg);
@@ -95,4 +100,5 @@
   right: 0;
   margin: 0 auto;
   opacity: 0.7;
+  scale: 1;
 }

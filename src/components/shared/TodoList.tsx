@@ -92,7 +92,7 @@ const TodoList: FC = () => {
           </AnimatePresence>
         </div>
       ) : (
-        <div className="bg-white/50 backdrop-blur backdrop:blur-sm p-3 rounded flex w-full items-start justify-start gap-2 border border-slate-200 relative">
+        <div className="bg-white/50 dark:bg-black/50 backdrop-blur backdrop:blur-sm p-3 rounded flex w-full items-start justify-start gap-2 border border-slate-200 dark:border-slate-700 relative">
           No todos found
         </div>
       )}

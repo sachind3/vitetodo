@@ -18,10 +18,17 @@ import { Input } from "../ui/input";
 
 const TodoForm: FC = () => {
   const [text, setText] = useState<string>("");
-  const { user, setTodos, filterStatus, setFilterStatus } = useApp();
+  const { user, todos, setTodos, filterStatus, setFilterStatus } = useApp();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (todos.length > 20) {
+      toast.error("You can add only 20 tasks", {
+        duration: 3000,
+      });
+      setText("");
+      return;
+    }
 
     if (!text.trim().length) {
       toast.error("Please enter a task", {
@@ -71,14 +78,16 @@ const TodoForm: FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2 w-full my-4">
+    <form onSubmit={handleSubmit} className="flex gap-2 w-full">
       <Input
         placeholder="Enter a task"
-        className="backdrop:blur-sm bg-white/50 backdrop-blur grow"
+        className="grow"
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      <Button type="submit">Add</Button>
+      <Button type="submit" className="dark:text-white">
+        Add
+      </Button>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" className="!px-2 relative">

@@ -12,14 +12,14 @@ import { FC } from "react";
 const Login: FC = ({}) => {
   const { actionLogin } = useApp();
   return (
-    <div className="min-h-dvh flex items-center justify-center p-4">
-      <Card className="w-80">
+    <div className="flex items-center justify-center relative z-20 grow">
+      <Card className="w-80 bg-white/50 dark:bg-black/50 backdrop-blur">
         <CardHeader>
           <CardTitle className="text-center">
             Welcome to{" "}
-            <span className="text-blue-600 font-extrabold">TodoFlow</span>
+            <span className="text-blue-500 font-extrabold">TodoFlow</span>
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-slate-700 dark:text-slate-300">
             Organize, track, and complete your to-dos with ease in a seamless,
             intuitive app.
           </CardDescription>
