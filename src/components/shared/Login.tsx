@@ -9,7 +9,7 @@ import {
 import { useApp } from "@/context";
 import { FC } from "react";
 
-const Login: FC = ({}) => {
+const Login: FC = () => {
   const { actionLogin } = useApp();
   return (
     <div className="flex items-center justify-center relative z-20 grow">

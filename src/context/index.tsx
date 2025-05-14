@@ -36,23 +36,25 @@ export const AppState = ({ children }: { children: ReactNode }) => {
       setAuthLoading(true);
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(firebaseAuth, provider);
-      const user = result.user;
-      const userRef = doc(firestore, "users", user.uid);
+      const newuser = result.user;
+      const userRef = doc(firestore, "users", newuser.uid);
       const userSnap = await getDoc(userRef);
       if (!userSnap.exists()) {
         await setDoc(userRef, {
-          uid: user.uid,
-          displayName: user.displayName,
-          email: user.email,
-          photoURL: user.photoURL,
+          uid: newuser.uid,
+          displayName: newuser.displayName,
+          email: newuser.email,
+          photoURL: newuser.photoURL,
           createdAt: new Date(),
         });
       }
+      console.log(newuser);
+
       setUser({
-        uid: user.uid,
-        displayName: user.displayName,
-        email: user.email,
-        photoURL: user.photoURL,
+        uid: newuser.uid,
+        displayName: newuser.displayName,
+        email: newuser.email,
+        photoURL: newuser.photoURL,
       });
     } catch (error) {
       console.error("Login failed:", error);
