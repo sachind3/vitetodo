@@ -11,8 +11,9 @@ import { LogOut } from "lucide-react";
 import { FC } from "react";
 import { ModeToggle } from "../mode-toggle";
 
-const Header: FC = ({}) => {
+const Header: FC = () => {
   const { user, actionLogout } = useApp();
+
   return (
     <header className="bg-white/50 dark:bg-black/50 backdrop-blur sticky top-0 left-0 w-full border-b border-b-slate-200 dark:border-b-slate-800 shadow-sm py-2 z-50">
       <div className="max-w-lg mx-auto px-4 flex items-center justify-between gap-3">
@@ -28,7 +29,9 @@ const Header: FC = ({}) => {
                   alt={user?.displayName || ""}
                   referrerPolicy="no-referrer"
                 />
-                <AvatarFallback>CN</AvatarFallback>
+                <AvatarFallback className="bg-primary text-primary-background">
+                  {user?.displayName?.slice(0, 2).toUpperCase()}
+                </AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">

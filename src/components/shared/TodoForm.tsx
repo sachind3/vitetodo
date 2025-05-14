@@ -50,6 +50,7 @@ const TodoForm: FC = () => {
       const newTodoRef = await addDoc(userTodosRef, {
         text,
         completed: false,
+        userId: user.uid,
         createdAt,
       });
       setFilterStatus("all");

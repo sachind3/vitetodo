@@ -19,7 +19,7 @@ const Login: FC = ({}) => {
             Welcome to{" "}
             <span className="text-blue-500 font-extrabold">TodoFlow</span>
           </CardTitle>
-          <CardDescription className="text-slate-700 dark:text-slate-300">
+          <CardDescription className="text-slate-700 dark:text-slate-300 text-center">
             Organize, track, and complete your to-dos with ease in a seamless,
             intuitive app.
           </CardDescription>
